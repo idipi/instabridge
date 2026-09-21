@@ -1,6 +1,6 @@
 services:
   instabridge:
-    build: .
+    image: ghcr.io/idipi/instabridge:latest
     container_name: instabridge
     restart: unless-stopped
     env_file:
