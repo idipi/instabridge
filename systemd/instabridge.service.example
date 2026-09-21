@@ -1,0 +1,16 @@
+[Unit]
+Description=Instagram to Telegram bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/instabridge
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=%h/instabridge/.venv/bin/python -m bridge.main
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=default.target

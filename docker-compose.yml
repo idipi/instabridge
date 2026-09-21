@@ -1,0 +1,15 @@
+services:
+  instabridge:
+    build: .
+    container_name: instabridge
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # .env may still carry the relative DB_PATH/IG_SESSION_FILE used by a
+      # non-Docker (venv/systemd) deployment; force the container's own paths so
+      # state always lands in the mounted, writable /data volume.
+      DB_PATH: /data/bridge_state.db
+      IG_SESSION_FILE: /data/ig_session.json
+    volumes:
+      - ./data:/data
